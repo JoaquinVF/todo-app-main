@@ -15,6 +15,7 @@ body{
     --fg: hsl(234, 39%, 85%);
     --top-img: url("./images/bg-mobile-dark.jpg");
     --bg-todo:hsl(235, 24%, 19%);
+    --lg-todo: hsl(237, 14%, 26%);
 
     background: var(--bg);
     color: var(--fg);
@@ -25,6 +26,7 @@ body{
     --bg: hsl(236, 33%, 92%);
     --bg-todo: hsl(0, 0%, 98%);
     --fg: hsl(237, 14%, 26%);
+    --lg-todo: hsl(236, 33%, 92%);
 }
 .background{
     position: absolute;
@@ -73,7 +75,7 @@ header{
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 1px solid hsl(237, 14%, 26%);
+    border: 1px solid var(--lg-todo);
     margin-left: 5px;
     cursor: pointer;
 }
@@ -103,6 +105,7 @@ header{
     padding: 10px;
     font-size: 15px;
     cursor: grab;
+    border-bottom: 1px solid var(--lg-todo);
 }
 .todo input[type="checkbox"]{
     display: none;
@@ -117,7 +120,7 @@ header{
 .active::before{
     content: url("./images/icon-check.svg");
     position: absolute;
-    bottom: 10.7px;
+    bottom: 6px;
     left: 4px;
 
     width: 10px;
