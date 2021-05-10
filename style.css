@@ -16,6 +16,7 @@ body{
     --top-img: url("./images/bg-mobile-dark.jpg");
     --bg-todo:hsl(235, 24%, 19%);
     --lg-todo: hsl(237, 14%, 26%);
+    --tgl-btn: url("./images/icon-sun.svg");
 
     background: var(--bg);
     color: var(--fg);
@@ -55,7 +56,7 @@ header{
     letter-spacing: 9px;
 }
 .tgl-btn{
-    background-image: url("./images/icon-sun.svg");
+    background: var(--tgl-btn);
     background-size: cover;
     width: 30px;
     height: 30px;
