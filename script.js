@@ -26,10 +26,12 @@ function newTodo(value) {
         if (todoCheckBox.checked){
             todoCheckBox.checked = false;
             todoText.style.textDecoration = "none";
+            todoText.style.color= "var(--tgl-txt-active)";
             todoCheckBoxLabel.classList.remove("active");
         } else {
             todoCheckBox.checked = true;
             todoText.style.textDecoration = "line-through";
+            todoText.style.color= "var(--tgl-txt-check)";
             todoCheckBoxLabel.classList.add("active");
         }
     });

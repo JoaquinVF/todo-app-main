@@ -17,6 +17,8 @@ body{
     --bg-todo:hsl(235, 24%, 19%);
     --lg-todo: hsl(237, 14%, 26%);
     --tgl-btn: url("./images/icon-sun.svg");
+    --tgl-txt-active:hsl(240, 10%, 72%);
+    --tgl-txt-check: hsl(233, 14%, 35%);
 
     background: var(--bg);
     color: var(--fg);
@@ -28,6 +30,8 @@ body{
     --bg-todo: hsl(0, 0%, 98%);
     --fg: hsl(237, 14%, 26%);
     --lg-todo: hsl(236, 33%, 92%);
+    --tgl-txt-active:hsl(233, 14%, 35%);
+    --tgl-txt-check:hsl(240, 10%, 72%);
 }
 .background{
     position: absolute;
@@ -90,8 +94,11 @@ header{
     margin-left: 10px;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 14px;
-    color: hsl(240, 10%, 72%);
+    color: var(--tgl-txt-active);
     caret-color: hsl(220, 98%, 61%);
+}
+#todo-input::placeholder{
+    color: var(--tgl-txt-check);
 }
 .todos{
     margin-top: 24px;
@@ -107,6 +114,7 @@ header{
     font-size: 15px;
     cursor: grab;
     border-bottom: 1px solid var(--lg-todo);
+    border-radius: 4px 4px 0 0;
 }
 .todo input[type="checkbox"]{
     display: none;
@@ -130,7 +138,18 @@ header{
 .cross{
     cursor: pointer;
 }
-
+.items-left-container{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-todo);
+    padding: 20px;
+    font-size: 15px;
+    color: hsl(233, 14%, 35%);
+    border-radius: 0 0 4px 4px;
+}
 
 
 
