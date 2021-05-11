@@ -20,6 +20,7 @@ body{
     --tgl-btn: url("./images/icon-sun.svg");
     --tgl-txt-active:hsl(240, 10%, 72%);
     --tgl-txt-check: hsl(233, 14%, 35%);
+    --bx-shdw:hsl(240, 19%, 11%);
 
     background: var(--bg);
     color: var(--fg);
@@ -27,12 +28,13 @@ body{
 .light{
     --top-img: url("./images/bg-mobile-light.jpg");
     --tgl-btn: url("./images/icon-moon.svg");
-    --bg: hsl(236, 33%, 92%);
+    --bg: hsl(0, 0%, 95%);
     --bg-todo: hsl(0, 0%, 98%);
     --fg: hsl(237, 14%, 26%);
     --lg-todo: hsl(236, 33%, 92%);
     --tgl-txt-active:hsl(233, 14%, 35%);
     --tgl-txt-check:hsl(240, 10%, 72%);
+    --bx-shdw:rgba(0, 0, 0, 0.028);
 }
 .background{
     position: absolute;
@@ -114,8 +116,8 @@ header{
     padding: 10px;
     font-size: 15px;
     cursor: grab;
-    border-bottom: 1px solid var(--lg-todo);
-    border-radius: 4px 4px 0 0;
+    border-bottom: 1px solid var(--lg-todo); 
+    box-shadow: 0px 0px 0px var(--bx-shdw);
 }
 .todo input[type="checkbox"]{
     display: none;
@@ -150,11 +152,34 @@ header{
     font-size: 15px;
     color: hsl(233, 14%, 35%);
     border-radius: 0 0 4px 4px;
+    box-shadow: 0px 10px 20px -3px var(--bx-shdw);
+}
+.filter-container{
+    position: relative;
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--bg-todo);
+    padding: 20px;
+    font-size: 13px;
+    color: hsl(233, 14%, 35%);
+    border-radius: 4px;
+    box-shadow: 0px 10px 20px 10px var(--bx-shdw);
+}
+.text{
+    position: relative;
+    margin: 30px 0 50px 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: var(--tgl-txt-check);
 }
 
-
-
 .attribution{
+    color: var(--tgl-txt-check);
     font-size: 11px; text-align: center; 
 }
 .attribution a{
