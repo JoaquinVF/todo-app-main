@@ -46,6 +46,7 @@ function newTodo(value) {
     });
 
     todoCross.textContent = "X";
+    todoCross.style.color = "grey"
     todoCross.addEventListener("click", function(e){
         e.target.parentElement.remove();
         todos = todos.filter((t) => t !== obj);
