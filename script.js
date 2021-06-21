@@ -9,7 +9,7 @@ todoInput.addEventListener("keyup", function(e){
         todos.push({ value: e.target.value, checked: false});
         newTodo(e.target.value);
         todoInput.value = "";
-        countComplted();
+        countCompleted();
     }
 });
 
@@ -34,10 +34,10 @@ function newTodo(value) {
             todoText.style.color= "var(--tgl-txt-active)";
             todoCheckBoxLabel.classList.remove("active");
             obj.checked = false;
-            countComplted();
+            countCompleted();
         } else {
             obj.checked = true;
-            countComplted();
+            countCompleted();
             todoCheckBox.checked = true;
             todoText.style.textDecoration = "line-through";
             todoText.style.color= "var(--tgl-txt-check)";
@@ -50,7 +50,7 @@ function newTodo(value) {
     todoCross.addEventListener("click", function(e){
         e.target.parentElement.remove();
         todos = todos.filter((t) => t !== obj);
-        countComplted();
+        countCompleted();
     });
 
     todo.classList.add("todo");
@@ -65,7 +65,7 @@ function newTodo(value) {
     todosContainer.appendChild(todo);
 }
 
-function countComplted(){
+function countCompleted(){
     completedCount.textContent = `${
         todos.filter((t) => t.checked === false).length
     } items left`;
@@ -107,3 +107,10 @@ function filterActive(){
         }
     })
 }
+
+// Sortable (Drag and drop library)
+
+Sortable.create(todosContainer, {
+    animation: 150,
+    dragClass: "ghost"
+});

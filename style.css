@@ -50,6 +50,7 @@ body{
     position: relative;
     margin-top: 45px;
     width: 85%;
+    max-width: 330px;
     height: auto;
 }
 header{
@@ -105,6 +106,9 @@ header{
 }
 .todos{
     margin-top: 24px;
+}
+.todos .ghost{
+    opacity: 0;
 }
 .todo{
     background: var(--bg-todo);
@@ -182,6 +186,7 @@ header{
     color: var(--tgl-txt-check);
 }
 
+
 .attribution{
     color: var(--tgl-txt-check);
     font-size: 11px; text-align: center; 
@@ -195,5 +200,14 @@ header{
     }
     .light{
         --top-img: url("./images/bg-desktop-light.jpg");
+    }
+    .container{
+        width: 45vw;
+        max-width: 400px;
+    }
+}
+@media screen and (min-width: 1024px){
+    .container{
+        max-width: 500px;
     }
 }
