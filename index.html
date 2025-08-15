@@ -13,8 +13,11 @@
   <div class="background"></div>
   <div class="container">
     <header>
-      <h1 class="title">Todo</h1>
-      <div onclick="changeTheme()" class="tgl-btn"></div>
+      <div class="titles">
+        <h1 class="title">Todo</h1>
+        <p class="subtitle">FELICITACIONES DOCTORA <span class="heart">&#10084;</span></p>
+      </div>
+      <button id="theme-toggle" class="tgl-btn" aria-label="Change theme"></button>
     </header>
     <div class="type-todo">
       <div class="circle"></div>
@@ -23,11 +26,11 @@
     <div class="todos"></div>
     <div class="remarks">
       <div class="completedCount">0 items left</div>
-      <div onclick="clearCompleted()" class="clear">Clear Completed</div>
+      <button id="clear-completed" class="clear">Clear Completed</button>
       <div class="filter-container">
-        <div onclick="showAll()" class="filterActive">All</div>
-        <div onclick="filterActive()" class="filter2">Active</div>
-        <div onclick="filterCompleted()" class="filter3">Completed</div>
+        <button id="filter-all" class="filterActive">All</button>
+        <button id="filter-active" class="filter2">Active</button>
+        <button id="filter-completed" class="filter3">Completed</button>
       </div>
     </div>
 
