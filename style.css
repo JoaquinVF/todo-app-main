@@ -125,6 +125,9 @@ header{
     border-bottom: 1px solid var(--lg-todo); 
     box-shadow: 0px 0px 0px var(--bx-shdw);
 }
+.hidden{
+    display: none;
+}
 .todo input[type="checkbox"]{
     display: none;
 }
@@ -151,6 +154,7 @@ header{
 }
 .cross{
     cursor: pointer;
+    color: grey;
 }
 .remarks{
     width: 100%;

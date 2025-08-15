@@ -39,7 +39,6 @@ function newTodo(todoObj) {
     });
 
     todoCross.textContent = "X";
-    todoCross.style.color = "grey";
     todoCross.addEventListener("click", function(){
         todoEl.remove();
         todos = todos.filter((t) => t.id !== todoObj.id);
@@ -80,26 +79,22 @@ function clearCompleted(){
 
 function showAll(){
     document.querySelectorAll(".todo").forEach((todo) => {
-        todo.style.display = "grid";
+        todo.classList.remove("hidden");
     });
 }
 
 function filterCompleted(){
     document.querySelectorAll(".todo").forEach((todo) => {
-        todo.style.display = "grid";
-        if (!todo.querySelector("input").checked) {
-            todo.style.display = "none";
-        }
-    })
+        const isCompleted = todo.querySelector("input").checked;
+        todo.classList.toggle("hidden", !isCompleted);
+    });
 }
 
 function filterActive(){
     document.querySelectorAll(".todo").forEach((todo) => {
-        todo.style.display = "grid";
-        if (todo.querySelector("input").checked) {
-            todo.style.display = "none";
-        }
-    })
+        const isCompleted = todo.querySelector("input").checked;
+        todo.classList.toggle("hidden", isCompleted);
+    });
 }
 
 // Sortable (Drag and drop library)
