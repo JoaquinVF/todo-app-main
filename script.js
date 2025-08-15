@@ -7,7 +7,13 @@ const filterAllButton = document.querySelector("#filter-all");
 const filterActiveButton = document.querySelector("#filter-active");
 const filterCompletedButton = document.querySelector("#filter-completed");
 
+const TODOS_KEY = "todos";
+const THEME_KEY = "theme";
+
 let todos = [];
+
+loadTheme();
+loadTodos();
 
 todoInput.addEventListener("keyup", function(e){
     if (e.key === "Enter" && e.target.value.trim() !== ""){
@@ -16,6 +22,7 @@ todoInput.addEventListener("keyup", function(e){
         newTodo(todo);
         todoInput.value = "";
         countCompleted();
+        saveTodos();
     }
 });
 
@@ -36,6 +43,7 @@ function newTodo(todoObj) {
         todoCheckBoxLabel.classList.toggle("active", todoCheckBox.checked);
         todoObj.checked = todoCheckBox.checked;
         countCompleted();
+        saveTodos();
     });
 
     todoCross.textContent = "X";
@@ -43,11 +51,16 @@ function newTodo(todoObj) {
         todoEl.remove();
         todos = todos.filter((t) => t.id !== todoObj.id);
         countCompleted();
+        saveTodos();
     });
 
     todoEl.classList.add("todo");
     todoCheckBoxLabel.classList.add("circle");
     todoCross.classList.add("cross");
+
+    todoCheckBox.checked = todoObj.checked;
+    todoEl.classList.toggle("completed", todoObj.checked);
+    todoCheckBoxLabel.classList.toggle("active", todoObj.checked);
 
     todoEl.appendChild(todoCheckBox);
     todoEl.appendChild(todoCheckBoxLabel);
@@ -65,6 +78,7 @@ function countCompleted(){
 
 function changeTheme(){
     document.body.classList.toggle("light");
+    saveTheme();
 }
 
 function clearCompleted(){
@@ -75,6 +89,7 @@ function clearCompleted(){
     });
     todos = todos.filter((t) => !t.checked);
     countCompleted();
+    saveTodos();
 }
 
 function showAll(){
@@ -95,6 +110,31 @@ function filterActive(){
         const isCompleted = todo.querySelector("input").checked;
         todo.classList.toggle("hidden", isCompleted);
     });
+}
+
+function saveTodos(){
+    localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
+}
+
+function loadTodos(){
+    const stored = localStorage.getItem(TODOS_KEY);
+    if (stored) {
+        todos = JSON.parse(stored);
+        todos.forEach(newTodo);
+    }
+    countCompleted();
+}
+
+function saveTheme(){
+    const theme = document.body.classList.contains("light") ? "light" : "dark";
+    localStorage.setItem(THEME_KEY, theme);
+}
+
+function loadTheme(){
+    const theme = localStorage.getItem(THEME_KEY);
+    if (theme === "light") {
+        document.body.classList.add("light");
+    }
 }
 
 // Sortable (Drag and drop library)
