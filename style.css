@@ -74,14 +74,28 @@ header{
     letter-spacing: 5px;
     animation: glow 1.5s ease-in-out infinite alternate;
     margin-top: 4px;
+    display: flex;
+    align-items: center;
+}
+.subtitle .heart{
+    display: inline-block;
+    margin-left: 6px;
+    animation: beat 1s ease-in-out infinite;
+}
+.light .subtitle{
+    color: hsl(276deg 79.55% 65.49%);
 }
 @keyframes glow{
     from{
-        text-shadow: 0 0 5px hsl(220, 98%, 61%);
+        text-shadow: 0 0 5px hsl(0 0% 100% / 0.6);
     }
     to{
-        text-shadow: 0 0 20px hsl(220, 98%, 61%);
+        text-shadow: 0 0 20px hsl(0 0% 100%);
     }
+}
+@keyframes beat{
+    0%,100%{ transform: scale(1); }
+    50%{ transform: scale(1.4); }
 }
 .tgl-btn{
     background: var(--tgl-btn);
