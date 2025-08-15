@@ -63,6 +63,26 @@ header{
     text-transform: uppercase;
     letter-spacing: 9px;
 }
+.titles{
+    display: flex;
+    flex-direction: column;
+}
+.subtitle{
+    font-size: 20px;
+    color: hsl(220, 98%, 61%);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    animation: glow 1.5s ease-in-out infinite alternate;
+    margin-top: 4px;
+}
+@keyframes glow{
+    from{
+        text-shadow: 0 0 5px hsl(220, 98%, 61%);
+    }
+    to{
+        text-shadow: 0 0 20px hsl(220, 98%, 61%);
+    }
+}
 .tgl-btn{
     background: var(--tgl-btn);
     background-size: cover;
