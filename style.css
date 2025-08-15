@@ -68,6 +68,8 @@ header{
     background-size: cover;
     width: 30px;
     height: 30px;
+    border: none;
+    cursor: pointer;
 }
 .type-todo{
     width: 100%;
@@ -128,6 +130,11 @@ header{
 }
 .todo p{
     margin-left: 5px;
+    color: var(--tgl-txt-active);
+}
+.todo.completed p{
+    text-decoration: line-through;
+    color: var(--tgl-txt-check);
 }
 .active{
     position: relative;
@@ -157,7 +164,7 @@ header{
     border-radius: 0 0 5px 5px;
     box-shadow: 0px 10px 20px -3px var(--bx-shdw);
 }
-.remarks div{
+.remarks div, .remarks button{
     padding: 0 10px;
 }
 .filter-container{
@@ -176,6 +183,10 @@ header{
 }
 .filterActive, .filter2, .filter3, .clear{
     cursor: pointer;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
 }
 .text{
     position: relative;

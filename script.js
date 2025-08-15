@@ -1,68 +1,61 @@
 const todoInput = document.querySelector("#todo-input");
 const todosContainer = document.querySelector(".todos");
 const completedCount = document.querySelector(".completedCount");
+const themeToggle = document.querySelector("#theme-toggle");
+const clearButton = document.querySelector("#clear-completed");
+const filterAllButton = document.querySelector("#filter-all");
+const filterActiveButton = document.querySelector("#filter-active");
+const filterCompletedButton = document.querySelector("#filter-completed");
 
 let todos = [];
 
 todoInput.addEventListener("keyup", function(e){
-    if (e.key === "Enter" || e.keyCode === 13){
-        todos.push({ value: e.target.value, checked: false});
-        newTodo(e.target.value);
+    if (e.key === "Enter" && e.target.value.trim() !== ""){
+        const todo = { id: Date.now(), value: e.target.value.trim(), checked: false };
+        todos.push(todo);
+        newTodo(todo);
         todoInput.value = "";
         countCompleted();
     }
 });
 
-function newTodo(value) {
-    const todo = document.createElement("div");
+function newTodo(todoObj) {
+    const todoEl = document.createElement("div");
     const todoText = document.createElement("p");
     const todoCheckBox = document.createElement("input");
     const todoCheckBoxLabel = document.createElement("label");
     const todoCross = document.createElement("span");
 
-    let obj = todos.find((t) => t.value === value);
-
-
-    todoText.textContent = value;
+    todoText.textContent = todoObj.value;
     todoCheckBox.type = "checkbox";
-    todoCheckBox.name = "checkbox";
-    todoCheckBoxLabel.htmlFor = "checkbox";
-    todoCheckBoxLabel.addEventListener("click", function (e){
-        if (todoCheckBox.checked){
-            todoCheckBox.checked = false;
-            todoText.style.textDecoration = "none";
-            todoText.style.color= "var(--tgl-txt-active)";
-            todoCheckBoxLabel.classList.remove("active");
-            obj.checked = false;
-            countCompleted();
-        } else {
-            obj.checked = true;
-            countCompleted();
-            todoCheckBox.checked = true;
-            todoText.style.textDecoration = "line-through";
-            todoText.style.color= "var(--tgl-txt-check)";
-            todoCheckBoxLabel.classList.add("active");
-        }
-    });
-
-    todoCross.textContent = "X";
-    todoCross.style.color = "grey"
-    todoCross.addEventListener("click", function(e){
-        e.target.parentElement.remove();
-        todos = todos.filter((t) => t !== obj);
+    const checkboxId = `todo-${todoObj.id}`;
+    todoCheckBox.id = checkboxId;
+    todoCheckBoxLabel.htmlFor = checkboxId;
+    todoCheckBox.addEventListener("change", function (){
+        todoEl.classList.toggle("completed", todoCheckBox.checked);
+        todoCheckBoxLabel.classList.toggle("active", todoCheckBox.checked);
+        todoObj.checked = todoCheckBox.checked;
         countCompleted();
     });
 
-    todo.classList.add("todo");
+    todoCross.textContent = "X";
+    todoCross.style.color = "grey";
+    todoCross.addEventListener("click", function(){
+        todoEl.remove();
+        todos = todos.filter((t) => t.id !== todoObj.id);
+        countCompleted();
+    });
+
+    todoEl.classList.add("todo");
     todoCheckBoxLabel.classList.add("circle");
     todoCross.classList.add("cross");
 
-    todo.appendChild(todoCheckBox);
-    todo.appendChild(todoCheckBoxLabel);
-    todo.appendChild(todoText);
-    todo.appendChild(todoCross);
-    
-    todosContainer.appendChild(todo);
+    todoEl.appendChild(todoCheckBox);
+    todoEl.appendChild(todoCheckBoxLabel);
+    todoEl.appendChild(todoText);
+    todoEl.appendChild(todoCross);
+
+    todosContainer.appendChild(todoEl);
 }
 
 function countCompleted(){
@@ -80,14 +73,15 @@ function clearCompleted(){
         if (todo.querySelector("input").checked){
             todo.remove();
         }
-    })
+    });
+    todos = todos.filter((t) => !t.checked);
+    countCompleted();
 }
 
 function showAll(){
-    document.querySelectorAll(".filter")
     document.querySelectorAll(".todo").forEach((todo) => {
         todo.style.display = "grid";
-    })
+    });
 }
 
 function filterCompleted(){
@@ -114,3 +108,9 @@ Sortable.create(todosContainer, {
     animation: 150,
     dragClass: "ghost"
 });
+
+themeToggle.addEventListener("click", changeTheme);
+clearButton.addEventListener("click", clearCompleted);
+filterAllButton.addEventListener("click", showAll);
+filterActiveButton.addEventListener("click", filterActive);
+filterCompletedButton.addEventListener("click", filterCompleted);
