@@ -63,11 +63,33 @@ header{
     text-transform: uppercase;
     letter-spacing: 9px;
 }
+.titles{
+    display: flex;
+    flex-direction: column;
+}
+.subtitle{
+    font-size: 20px;
+    color: hsl(220, 98%, 61%);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    animation: glow 1.5s ease-in-out infinite alternate;
+    margin-top: 4px;
+}
+@keyframes glow{
+    from{
+        text-shadow: 0 0 5px hsl(220, 98%, 61%);
+    }
+    to{
+        text-shadow: 0 0 20px hsl(220, 98%, 61%);
+    }
+}
 .tgl-btn{
     background: var(--tgl-btn);
     background-size: cover;
     width: 30px;
     height: 30px;
+    border: none;
+    cursor: pointer;
 }
 .type-todo{
     width: 100%;
@@ -123,11 +145,19 @@ header{
     border-bottom: 1px solid var(--lg-todo); 
     box-shadow: 0px 0px 0px var(--bx-shdw);
 }
+.hidden{
+    display: none;
+}
 .todo input[type="checkbox"]{
     display: none;
 }
 .todo p{
     margin-left: 5px;
+    color: var(--tgl-txt-active);
+}
+.todo.completed p{
+    text-decoration: line-through;
+    color: var(--tgl-txt-check);
 }
 .active{
     position: relative;
@@ -144,6 +174,7 @@ header{
 }
 .cross{
     cursor: pointer;
+    color: grey;
 }
 .remarks{
     width: 100%;
@@ -157,7 +188,7 @@ header{
     border-radius: 0 0 5px 5px;
     box-shadow: 0px 10px 20px -3px var(--bx-shdw);
 }
-.remarks div{
+.remarks div, .remarks button{
     padding: 0 10px;
 }
 .filter-container{
@@ -176,6 +207,10 @@ header{
 }
 .filterActive, .filter2, .filter3, .clear{
     cursor: pointer;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
 }
 .text{
     position: relative;
